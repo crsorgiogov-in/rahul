@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head><script type="text/javascript">
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+</script>
+<style>
+    table {
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    .auto-style1 {
+        height: 17px;
+    }
+
+     #background{
+    position:absolute;
+    z-index:0;
+    background:white;
+    display:block;
+    min-height:50%; 
+    min-width:50%;
+    color:yellow;
+}
+
+#content{
+    position:absolute;
+    z-index:1;
+}
+
+#bg-text
+{
+    color:#d3d3d366;
+    font-size:60px;
+    transform:rotate(300deg);
+    -webkit-transform:rotate(300deg);
+     text-align: center;
+}
+</style>
+
+<link href="css/css-main.css" rel="stylesheet">
+<link href="css/css-main-responsive.css" rel="stylesheet">
+<link href="css/css-tcal.css" rel="stylesheet">
+<link href="css/css-demo.css" rel="stylesheet">
+<link href="css/css-jquery-ui-1.8.2.custom.css" rel="stylesheet">
+<link href="css/css-bootstrap-timepicker.min.css" rel="stylesheet">
+<style>
+select.error { background-color:#ffa8a8; border: 1px dotted red; float:left;   }
+input.error{ background-color:#ffa8a8; border: 1px dotted red; float:left; }
+textarea.error{ background-color:#ffa8a8; border: 1px dotted red; vertical-align:top; float:left; }
+</style>
+<style type="text/css" media="print">
+.dontprint{ display:none}
+</style>
+<script src="js/js-toggle.js"></script>
+<script src="js/js-bootstrap.js"></script>
+<script src="js/js-jquery1.js"></script>
+<script src="js/js-jquery-1.8.1.js"></script>
+<script src="js/js-bootstrap-dropdown.js"></script>
+<script src="js/js-bootstrap-transition.js"></script>
+
+<script type="text/javascript" src="js/js-bootstrap-timepicker.min.js"></script>
+<script src="js/js-bootstrap-modal.js"></script>
+<script src="js/js-jquery.validate.js"></script> 
+<script src="js/js-jquery-ui-1.8.2.custom.min.js"></script> 
+<script src="js/js-tcal.js"></script>
+<script src="js/js-canvasjs.min.js"></script>
+<script src="js/js-jquery.collapse.js"></script>
+<script src="js/js-jquery.collapse_storage.js"></script>
+
+
+
+<script src="js/js-bootstrap-alert.js"></script>
+
+<script>
+    function PopupCenter(url, title, w, h) {
+        // Fixes dual-screen position                         Most browsers      Firefox  
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+        width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + 800 + ', height=' + 800 + ', top=' + top + ', left=' + left);
+
+        // Puts focus on the newWindow  
+        if (window.focus) {
+            newWindow.focus();
+        }
+    }
+</script>
+
+<script type="text/ecmascript">
+<!--
+    function autoResize(id) {
+        var newheight;
+        var newwidth;
+        if (document.getElementById) {
+            newheight = document.getElementById(id).contentWindow.document.body.scrollHeight;
+            newwidth = document.getElementById(id).contentWindow.document.body.scrollWidth;
+        }
+
+        document.getElementById(id).height = (newheight) + "px";
+        document.getElementById(id).width = (newwidth) + "px";
+    }
+    //-->
+</script>
+<!-- for Hide the Add Button.-->
+
+<script type="text/javascript">
+
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+	</script>
+
+	<script type="text/javascript">
+    function addValidator() {
+        $.validator.addMethod("alpha_with_space", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("alpha_no_space", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z][a-zA-Z\\s]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("alpha_num_no_space", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("user_name", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9_.]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("file_name", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9_]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("decimal", function (value, element) {
+            return this.optional(element) || /^[0-9.]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("alpha_num_with_space", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9 ]+$/i.test(value);
+        }, "Invalid Text");
+        $.validator.addMethod("date_slash", function (value, element) {
+            return this.optional(element) || /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/i.test(value);
+        }, "Invalid Date");
+        $.validator.addMethod("date_hyphen", function (value, element) {
+            return this.optional(element) || /^(((0[1-9]|[12]\d|3[01])\-(0[13578]|1[02])\-((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\-(0[13456789]|1[012])\-((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\-02\-((19|[2-9]\d)\d{2}))|(29\-02\-((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/i.test(value);
+        }, "Invalid Date");
+        $.validator.addMethod("mobile_no", function (value, element) {
+            return this.optional(element) || /^[0-9]{10}$/i.test(value);
+        }, "Invalid Mobile No.");
+    }
+</script>
+
+
+</head><body><div id="printableArea">
+    <div style="width: 200mm; height: auto; margin: auto;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="30%"><img src="images/images-logo2_new1.png" align="absmiddle">
+	
+	</td>
+               <td align="center" style="font-size:medium;"><b>&#2352;&#2366;&#2332;&#2360;&#2381;&#2357; &#2319;&#2357;&#2306; &#2349;&#2370;&#2350;&#2367; &#2360;&#2369;&#2343;&#2366;&#2352; &#2357;&#2367;&#2349;&#2366;&#2327;,&#2348;&#2367;&#2361;&#2366;&#2352; &#2360;&#2352;&#2325;&#2366;&#2352;</b>
+                   <br><b>&#2346;&#2381;&#2352;&#2346;&#2340;&#2381;&#2352;-XIV &#2326;</b>
+                      <br>   <b>(&#2342;&#2375;&#2326;&#2375;&#2306; &#2344;&#2367;&#2351;&#2350;-10)</b>
+                   <br><b>&#2354;&#2327;&#2366;&#2344; &#2352;&#2360;&#2368;&#2342;</b>
+               </td>
+            <td nowrap>&#2321;&#2344;&#2354;&#2366;&#2311;&#2344;<br>
+                    
+                Running Unique No.: <b>25012022053954199179</b>
+                    <br>(Receipt No.)
+                </td>
+            </tr>
+        </table>
+         
+        
+        
+        <table width="100%" border="1">
+            <tr align="left">
+                <td width="36%">&#2332;&#2367;&#2354;&#2366;:- <b>Saran</b></td>
+                <td width="35%">&#2309;&#2306;&#2330;&#2354;:- <b>Sonpur</b></td>
+               </tr>
+             <tr align="left">
+                <td width="36%">&#2361;&#2354;&#2381;&#2325;&#2366;:- <b>&#2344;&#2327;&#2352; &#2346;&#2306;&#2330;&#2366;&#2351;&#2340;</b></td>
+                <td width="35%">&#2350;&#2380;&#2332;&#2366; :- <b>&#2346;&#2381;&#2352;&#2357;&#2375;&#2332;&#2366;&#2348;&#2366;&#2342;</b></td>
+               </tr>
+            <tr align="left">
+                <td width="36%">&#2332;&#2350;&#2366;&#2348;&#2306;&#2342;&#2368; &#2360;&#2306;0:- <b>1934</b>
+                    <br>&#2349;&#2366;&#2327; &#2357;&#2352;&#2381;&#2340;&#2350;&#2366;&#2344;:- <b>8         </b>
+                    <br>&#2346;&#2371;&#2359;&#2381;&#2336; &#2360;&#2306;&#2326;&#2381;&#2351;&#2366;:- <b>1028</b>
+
+                </td>
+                <td width="35%">&#2350;&#2380;&#2332;&#2366;/&#2341;&#2366;&#2344;&#2366; &#2360;&#2306;0:- <b>95</b></td>
+                </tr>
+            <tr align="left">
+                <td width="36%">&#2332;&#2350;&#2366;&#2348;&#2306;&#2342;&#2368; &#2352;&#2375;&#2351;&#2340; &#2325;&#2366; &#2344;&#2366;&#2350;:- <b>&#2323;&#2350;&#2346;&#2381;&#2352;&#2325;&#2358;  &#2352;&#2366;&#2351;</b><br>&#2309;&#2349;&#2367;&#2349;&#2366;&#2357;&#2325; &#2325;&#2366; &#2344;&#2366;&#2350;:- <b>&#2354;&#2375;&#2335;  &#2352;&#2366;&#2350;&#2375;&#2358;&#2381;&#2357;&#2352;  &#2352;&#2366;&#2351;</b></td>
+                <td width="35%">&#2346;&#2340;&#2366;:- <b>  , </b></td>
+               
+            </tr>
+
+            
+
+           
+        </table>
+        <br>
+        <table width="100%" border="1">
+            <tr align="center">
+                <td width="36%">&#2326;&#2366;&#2340;&#2366; &#2360;&#2306;&#2326;&#2381;&#2351;&#2366;</td>
+                <td width="35%">&#2326;&#2375;&#2360;&#2352;&#2366; &#2360;&#2306;&#2326;&#2381;&#2351;&#2366;</td>
+                <td width="29%">&#2352;&#2325;&#2348;&#2366;/&#2337;&#2367;&#2360;&#2350;&#2367;&#2354;</td>
+            </tr>
+            <tr align="center">
+                <td>
+                     
+                    <p style="width:200px;word-wrap: break-word"> 105</p>
+                </td>
+                <td>
+                    
+                   <p style="width:200px;word-wrap: break-word"> 487,362</p> 
+                </td>
+                <td>
+                    0 &#2319;&#2325;&#2337;&#2364; 9 &#2337;&#2367;&#2360;&#2350;&#2368;&#2354; 0 &#2361;&#2375;&#2325;&#2381;&#2335;&#2352;
+                </td>
+            </tr>
+        </table>
+        <div id="bg-text"><strong>Without Prejudice</strong> </div>
+        <br>
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="center"><b>&#2360;&#2366;&#2354;&#2366;&#2344;&#2366; &#2350;&#2366;&#2306;&#2327;(&#2348;&#2325;&#2366;&#2351;&#2366; &#2324;&#2352; &#2357;&#2352;&#2381;&#2340;&#2350;&#2366;&#2344;) &#2330;&#2366;&#2354;&#2370; &#2357;&#2367;&#2340;&#2368;&#2351; &#2357;&#2352;&#2381;&#2359; &#2325;&#2366;</b></td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1">
+                <tr>
+                <th style="width:32%">&#2357;&#2367;&#2340;&#2368;&#2351; &#2357;&#2352;&#2381;&#2359;</th>
+                <th style="width:8%">&#2360;&#2366;&#2354;&#2366;&#2344;&#2366; &#2342;&#2352;</th>
+                <th style="width:8%">&#2348;&#2325;&#2366;&#2351;&#2366;</th>
+                <th style="width:8%">&#2357;&#2352;&#2381;&#2340;&#2350;&#2366;&#2344;</th>
+                <th style="width:8%">&#2360;&#2370;&#2342;</th>
+                 <th style="width:8%">&#2325;&#2369;&#2354;</th>
+                <th style="width:32%">&#2309;&#2349;&#2367;&#2351;&#2369;&#2325;&#2381;&#2340;&#2367;(&#2348;&#2325;&#2366;&#2351;&#2366; &#2325;&#2366; &#2357;&#2352;&#2381;&#2359; &#2325;&#2348; &#2360;&#2375; &#2325;&#2348; &#2340;&#2325;)</th>
+            </tr>
+            <tr>
+               
+     
+                <th style="width:32%">&#2332;&#2350;&#2366;&#2348;&#2306;&#2342;&#2368; &#2354;&#2327;&#2366;&#2344;</th>
+                <td style="width:8%">10.00</td>
+                <td style="width:8%">50.00</td>
+                <td style="width:8%">10.00</td>
+                <td style="width:8%">0.00</td>
+                <td style="width:8%">60.00</td>
+                <td style="width:32%">2016-2017 &#2360;&#2375; 2021-2022</td>
+                </tr>
+
+            <tr>
+              
+                <th style="width:32%">&#2360;&#2375;&#2360;(&#2354;&#2327;&#2366;&#2344; &#2325;&#2366; 50 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2360;&#2381;&#2357;&#2366;&#2360;&#2381;&#2341;&#2381;&#2351; &#2360;&#2375;&#2360;, 50 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2358;&#2367;&#2325;&#2381;&#2359;&#2366; &#2360;&#2375;&#2360;, 25 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2352;&#2379;&#2337; &#2360;&#2375;&#2360; &#2319;&#2357;&#2306; 20 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2325;&#2371;&#2359;&#2367; &#2360;&#2375;&#2360;)</th>
+                <td style="width:8%">14.50</td>
+                <td style="width:8%">72.50</td>
+                <td style="width:8%">14.50</td>
+                <td style="width:8%">0.00</td>
+                <td style="width:8%">90.00</td>
+                <td style="width:32%">2016-2017 &#2360;&#2375; 2021-2022</td>
+                </tr>
+
+            <tr>
+               
+     
+                <th>&#2325;&#2369;&#2354;</th>
+                <td>24.50</td>
+                <td>122.50</td>
+                <td>24.50</td>
+                <td>0.00</td>
+                <td>150.00</td>
+                <td>2016-2017 &#2360;&#2375; 2021-2022</td>
+                </tr>
+
+            
+
+            
+
+            
+           
+           
+                    
+               
+            
+            
+            
+        </table>
+
+
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="center"><b>&#2357;&#2360;&#2370;&#2354;&#2368;</b></td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>&#2357;&#2367;&#2340;&#2368;&#2351; &#2357;&#2352;&#2381;&#2359;</th>
+                <th>&#2348;&#2325;&#2366;&#2351;&#2366; &#2325;&#2375; &#2357;&#2367;&#2352;&#2369;&#2342;&#2381;&#2343; &#2357;&#2360;&#2370;&#2354;&#2368;</th>
+                <th>&#2357;&#2352;&#2381;&#2340;&#2350;&#2366;&#2344; &#2350;&#2366;&#2306;&#2327; &#2325;&#2375; &#2357;&#2367;&#2352;&#2369;&#2342;&#2381;&#2343; &#2325;&#2369;&#2354; &#2357;&#2360;&#2370;&#2354;&#2368;</th>
+                <th>&#2325;&#2369;&#2354; &#2357;&#2360;&#2370;&#2354;&#2368;</th>
+                <th>&#2309;&#2357;&#2358;&#2375;&#2359; &#2352;&#2366;&#2358;&#2367;(&#2348;&#2325;&#2366;&#2351;&#2366; &#2325;&#2366; &#2357;&#2352;&#2381;&#2359; &#2325;&#2348; &#2360;&#2375; &#2325;&#2348; &#2340;&#2325;)</th>
+                <th>&#2309;&#2349;&#2367;&#2351;&#2369;&#2325;&#2381;&#2340;&#2367; </th>
+                   
+
+            </tr><tr>
+               
+     
+                <th>&#2354;&#2327;&#2366;&#2344;</th>
+               
+                <td style="width:8%">50.00</td>
+                 <td style="width:8%">10.00</td>
+              
+               
+                <td style="width:8%">60.00</td>
+                <td style="width:32%">2016-2017 &#2360;&#2375; 2021-2022</td>
+                <td></td>
+                <td></td>
+                </tr>
+
+            <tr>
+               
+     
+                <th>&#2360;&#2375;&#2360;(&#2354;&#2327;&#2366;&#2344; &#2325;&#2366; 50 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2360;&#2381;&#2357;&#2366;&#2360;&#2381;&#2341;&#2381;&#2351; &#2360;&#2375;&#2360;, 50 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2358;&#2367;&#2325;&#2381;&#2359;&#2366; &#2360;&#2375;&#2360;, 25 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2352;&#2379;&#2337; &#2360;&#2375;&#2360; &#2319;&#2357;&#2306; 20 &#2346;&#2381;&#2352;&#2340;&#2367;&#2358;&#2340; &#2325;&#2371;&#2359;&#2367; &#2360;&#2375;&#2360;)</th>
+              
+                <td style="width:8%">72.50</td>
+                 <td style="width:8%">14.50</td>
+               
+                <td style="width:8%">90.00</td>
+                <td style="width:32%">2016-2017 &#2360;&#2375; 2021-2022</td>
+                  <td></td>
+                </tr>
+
+            <tr>
+               
+     
+                <th>&#2325;&#2369;&#2354;</th>
+             
+                <td>122.50</td>
+                <td>24.50</td>
+             
+                <td>150.00</td>
+                <td>2016-2017 &#2360;&#2375; 2022-2023</td>
+                  <td></td>
+                </tr>
+	
+            
+            
+                    
+            
+        </table>
+    <br>
+    <br>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom: #666 solid 1px;">
+            <tr>
+                 <td><b>&#2325;&#2369;&#2354; &#2348;&#2325;&#2366;&#2351;&#2366;-</b><strong>150.00</strong></td>
+               
+            </tr>
+          
+            <tr>
+                <td colspan="2"><b>&#2357;&#2360;&#2370;&#2354; &#2325;&#2368; &#2327;&#2351;&#2368; &#2352;&#2366;&#2358;&#2367; &#2358;&#2348;&#2381;&#2342;&#2379;&#2306; &#2350;&#2375;&#2306;-</b> <b>One Hundred Fifty  Rupees </b></td>
+                <td align="right">&#2340;&#2367;&#2341;&#2367;-
+      
+                    <b>25-01-2022</b>
+                    
+                </td>
+            </tr>
+        </table>
+    <br>
+        
+        <img src="images/vGPfyz4z3-+Px8qc7X9MyoOAAAAAElFTkSuQmCC" alt="QR Code" style="width: 120px">
+        <br>
+        <br>
+        <div style="font-size: 12px">
+            &#2351;&#2361; &#2319;&#2325; &#2325;&#2350;&#2381;&#2346;&#2351;&#2369;&#2335;&#2352; &#2332;&#2344;&#2367;&#2340; &#2346;&#2381;&#2352;&#2340;&#2367; &#2361;&#2376;&#2404;<br>
+          
+            &#2325;&#2367;&#2360;&#2368; &#2349;&#2368; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2325;&#2368; &#2309;&#2358;&#2369;&#2342;&#2381;&#2343;&#2367;&#2351;&#2379;&#2306; &#2325;&#2375; &#2354;&#2367;&#2319; &#2360;&#2350;&#2381;&#2348;&#2344;&#2381;&#2343;&#2367;&#2340; &#2309;&#2306;&#2330;&#2354;&#2366;&#2343;&#2367;&#2325;&#2366;&#2352;&#2368; &#2360;&#2375; &#2360;&#2306;&#2346;&#2352;&#2381;&#2325; &#2325;&#2352;&#2375;&#2306;&#2404;
+        </div>
+
+    </div>
+
+</div>
+<br>
+
+<div align="center">
+    <input type="button" value="Print" class="btn btn-inverse" style="width: 100px" onclick="printDiv('printableArea')">
+</div>
+
+</body>
+</html>
+
+
+
+
+	
+
